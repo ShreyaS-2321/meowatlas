@@ -33,14 +33,15 @@ export const getAllCats = async () => {
 
 export const updateCatStats = async (documentId, data) => {
   try {
-    return await databases.updateDocument(
-      DATABASE_ID, 
-      COLLECTION_ID, 
-      documentId, 
-      data 
+    const response = await databases.updateDocument(
+      DATABASE_ID,
+      COLLECTION_ID,
+      documentId,
+      data
     );
+    return response;
   } catch (error) {
-    console.error("Error updating stats:", error);
+    console.error("Error updating cat stats in Appwrite:", error);
     throw error;
   }
 };
