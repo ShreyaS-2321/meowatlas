@@ -24,13 +24,16 @@
   overflow: hidden;
 }
 
-
 .modalHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 24px;
-  background: linear-gradient(135deg, rgba(163, 223, 241, 0.28), rgba(254, 228, 184, 0.5));
+  background: linear-gradient(
+    135deg,
+    rgba(163, 223, 241, 0.28),
+    rgba(254, 228, 184, 0.5)
+  );
   border-bottom: 1px solid var(--glass-border);
 }
 
@@ -41,20 +44,14 @@
   color: var(--text-main);
 }
 
-.modalHeader h2::after {
-  content: ""; /* Text ko khali kar diya */
-  display: inline-block;
-  vertical-align: middle;
-  margin-left: 8px;
-  
-  /* Yahan apni image ka absolute ya relative path dijiye */
-  background-image: url('cat.svg'); 
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  
-  /* Dimensions control */
-  width: 40px;  
+.title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.catIcon {
+  width: 40px;
   height: 40px;
 }
 
@@ -86,7 +83,7 @@
 }
 
 .noticeIcon {
-  color: #ffaa00; /* Subtle warning orange */
+  color: #ffaa00;
   font-size: 1.2rem;
   flex-shrink: 0;
   margin-top: 2px;
@@ -97,7 +94,6 @@
   color: #555555;
   line-height: 1.4;
 }
-
 
 .formContent {
   padding: 24px;
@@ -130,8 +126,8 @@
   color: var(--text-muted);
 }
 
-.formGroup input, 
-.formGroup select, 
+.formGroup input,
+.formGroup select,
 .formGroup textarea {
   width: 100%;
   padding: 12px 16px;
@@ -146,8 +142,8 @@
   box-sizing: border-box;
 }
 
-.formGroup input:focus, 
-.formGroup select:focus, 
+.formGroup input:focus,
+.formGroup select:focus,
 .formGroup textarea:focus {
   background: white;
   border-color: var(--accent-blue);
@@ -163,7 +159,6 @@
   border-bottom: 1px solid rgba(255, 164, 58, 0.3);
 }
 
-
 .tagsContainer {
   display: flex;
   flex-wrap: wrap;
@@ -177,14 +172,14 @@
 
 .chip {
   background: white;
-  border: 1px solid rgba(0,0,0,0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   padding: 4px 10px;
   border-radius: var(--radius-full);
   font-size: 0.85rem;
   display: flex;
   align-items: center;
   gap: 6px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
 }
 
 .chip button {
@@ -228,7 +223,6 @@
   background: var(--color-black);
   color: white;
 }
-
 
 .photoUploadsRow {
   display: flex;
@@ -311,7 +305,6 @@
   min-width: 0; /* Prevents flex items from overflowing */
 }
 
-
 .modalFooter {
   display: flex;
   justify-content: flex-end;
@@ -369,24 +362,24 @@
 }
 
 @keyframes spin {
-  100% { transform: rotate(360deg); }
+  100% {
+    transform: rotate(360deg);
+  }
 }
-
 
 @media (max-width: 600px) {
   .formGrid {
     grid-template-columns: 1fr;
   }
-  
+
   .photoUploadsRow {
     flex-direction: column;
   }
-  
+
   .modal {
     max-height: 95vh;
   }
 }
-
 
 .autocompleteWrapper {
   position: relative;
@@ -410,17 +403,17 @@
   padding: 8px 0;
   list-style: none;
   z-index: 50;
-  
+
   /* Custom sleek scrollbar */
   scrollbar-width: thin;
-  scrollbar-color: rgba(0,0,0,0.2) transparent;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
 }
 
 .dropdownList::-webkit-scrollbar {
   width: 6px;
 }
 .dropdownList::-webkit-scrollbar-thumb {
-  background: rgba(0,0,0,0.15);
+  background: rgba(0, 0, 0, 0.15);
   border-radius: 4px;
 }
 
