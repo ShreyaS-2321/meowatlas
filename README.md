@@ -76,8 +76,6 @@ By combining geolocation and real-time updates, MeowAtlas bridges the gap betwee
 
 ---
 
----
-
 # 🚀 Getting Started
 
 ## 1️⃣ Prerequisites
@@ -216,12 +214,6 @@ git push origin feature/my-feature
 ```
 
 5. Open a Pull Request 🎉
-
----
-
-# 📄 License
-
-This project is licensed under the MIT License.
 
 ---
 
