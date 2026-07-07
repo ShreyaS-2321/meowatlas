@@ -39,7 +39,6 @@ const MapContainer = ({ cats = [], onSelectCat }) => {
 
   const { setMapInstance } = useMap();
 
-
   useEffect(() => {
     if (mapRef.current) return;
 
@@ -99,7 +98,6 @@ const MapContainer = ({ cats = [], onSelectCat }) => {
     };
   }, [setMapInstance]);
 
-
   useEffect(() => {
     if (!mapRef.current) return;
 
@@ -131,6 +129,10 @@ const MapContainer = ({ cats = [], onSelectCat }) => {
 
         bounds.extend([lng, lat]);
 
+        // 🔴 THE FIX: Neutral wrapper element banaya gaya hai
+        const markerWrapper = document.createElement("div");
+
+        // Aapka original styled button
         const markerElement = document.createElement("button");
         markerElement.type = "button";
         markerElement.className = styles.catMarker;
@@ -160,6 +162,9 @@ const MapContainer = ({ cats = [], onSelectCat }) => {
 
         markerElement.appendChild(img);
 
+        // 🔴 Styled button ko neutral wrapper ke andar daal diya
+        markerWrapper.appendChild(markerElement);
+
         markerElement.onclick = (e) => {
           e.preventDefault();
           e.stopPropagation();
@@ -169,8 +174,9 @@ const MapContainer = ({ cats = [], onSelectCat }) => {
           }
         };
 
+        // 🔴 MapLibre ko ab wrapper pass kiya gaya hai
         const marker = new maplibregl.Marker({
-          element: markerElement,
+          element: markerWrapper, 
           anchor: "center",
         })
           .setLngLat([lng, lat])
