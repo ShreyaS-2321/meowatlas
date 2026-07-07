@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiX, FiUploadCloud, FiLoader, FiImage, FiMapPin, FiRefreshCcw } from 'react-icons/fi';
+import { FiX, FiUploadCloud, FiLoader, FiImage, FiMapPin, FiRefreshCcw, FiAlertCircle } from 'react-icons/fi';
 import { getNames } from 'country-list'; 
 import { getBreeds } from 'cat-breeds'; 
 import { uploadCatImage, uploadMultipleImages } from '../../services/storage';
@@ -8,7 +8,82 @@ import { addCatToDatabase } from '../../services/database';
 import styles from './AddCatModal.module.css';
 
 const SUGGESTED_TAGS = ['Playful', 'Sleepy', 'Vocal', 'Friendly', 'Shy', 'Cuddly', 'Always Hungry'];
-const POPULAR_BREEDS = ['Indie / DSH', 'Persian', 'Maine Coon', 'Siamese', 'British Shorthair', 'Bengal', 'Ragdoll','Sphynx'];
+const POPULAR_BREEDS = [
+  'Indian Domestic Shorthair (Indie)',
+  'Domestic Shorthair (DSH)',
+  'Domestic Medium Hair (DMH)',
+  'Domestic Longhair (DLH)',
+  'Mixed Breed',
+  'Unknown',
+  'Persian',
+  'Maine Coon',
+  'Siamese',
+  'British Shorthair',
+  'British Longhair',
+  'Bengal',
+  'Ragdoll',
+  'Sphynx',
+  'Abyssinian',
+  'Scottish Fold',
+  'American Shorthair',
+  'American Wirehair',
+  'American Bobtail',
+  'American Curl',
+  'Exotic Shorthair',
+  'Oriental Shorthair',
+  'Colorpoint Shorthair',
+  'Burmese',
+  'Birman',
+  'Bombay',
+  'Chartreux',
+  'Russian Blue',
+  'Siberian',
+  'Devon Rex',
+  'Cornish Rex',
+  'Selkirk Rex',
+  'LaPerm',
+  'Norwegian Forest Cat',
+  'Turkish Angora',
+  'Turkish Van',
+  'Manx',
+  'Cymric',
+  'Munchkin',
+  'Balinese',
+  'Javanese',
+  'Japanese Bobtail',
+  'Kurilian Bobtail',
+  'Mekong Bobtail',
+  'Pixie-Bob',
+  'Himalayan',
+  'Ragamuffin',
+  'Somali',
+  'Snowshoe',
+  'Burmilla',
+  'Ocicat',
+  'Chausie',
+  'Australian Mist',
+  'Toyger',
+  'Sokoke',
+  'Khao Manee',
+  'Lykoi',
+  'Havana Brown',
+  'Singapura',
+  'Korat',
+  'Egyptian Mau',
+  'Arabian Mau',
+  'Ceylon',
+  'Thai',
+  'Tonkinese',
+  'Peterbald',
+  'Nebelung',
+  'Bambino',
+  'Serengeti',
+  'California Spangled',
+  'Highlander',
+  'Napoleon (Minuet)',
+  'Dragon Li',
+  'Ukrainian Levkoy',
+];
 
 const modalVariants = {
   hidden: { opacity: 0, scale: 0.95, y: 20 },
@@ -177,6 +252,11 @@ const AddCatModal = ({ isOpen, onClose }) => {
               <button type="button" className={styles.closeBtn} onClick={onClose}><FiX /></button>
             </div>
 
+            <div className={styles.duplicateNotice}>
+                <FiAlertCircle className={styles.noticeIcon} />
+                <span>Please check the map with the cat's name or landmark to see if they have already been registered by another spotter!</span>
+              </div>
+
             <form className={styles.formContent} onSubmit={handleSubmit}>
               <div className={styles.sectionDivider}>Basic & Location</div>
               <div className={styles.formGrid}>
@@ -209,7 +289,7 @@ const AddCatModal = ({ isOpen, onClose }) => {
                 <div className={styles.formGroup}>
                   <label>Locality / Landmark *</label>
                   <div className={styles.autocompleteWrapper}>
-                    <input type="text" value={formData.city} placeholder="e.g., Victoria Memorial, Gariahat..." onChange={(e) => setFormData({...formData, city: e.target.value})} onFocus={() => setShowCity(true)} onBlur={() => setTimeout(() => setShowCity(false), 200)} required />
+                    <input type="text" value={formData.city} placeholder="Search locality or landmark..." onChange={(e) => setFormData({...formData, city: e.target.value})} onFocus={() => setShowCity(true)} onBlur={() => setTimeout(() => setShowCity(false), 200)} required />
                     {showCity && citySuggestions.length > 0 && (
                       <ul className={styles.dropdownList}>
                         {citySuggestions.map((c) => (
@@ -277,7 +357,7 @@ const AddCatModal = ({ isOpen, onClose }) => {
                 </div>
 
                 <div className={styles.uploadBlock}>
-                  <label>Gallery (Max 3)</label>
+                  <label>Image Gallery (Max 3)</label>
                   <div className={styles.uploadArea} onClick={() => galleryInputRef.current?.click()}>
                     <input type="file" accept="image/*" multiple ref={galleryInputRef} onChange={handleGallerySelect} hidden />
                     {galleryPreviews.length > 0 ? (
