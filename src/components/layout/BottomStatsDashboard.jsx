@@ -53,7 +53,7 @@ const BottomStatsDashboard = ({ cats = [] }) => {
 
     { id: 'pet', label: 'Pet Cats', value: formatNumber(categoryCounts['Pet Cat'] || 0), icon: FiHome },
     { id: 'street', label: 'Street Cats', value: formatNumber(categoryCounts['Street Cat'] || 0), icon: FiMapPin },
-    { id: 'shelter', label: 'Shelter', value: formatNumber(categoryCounts['Shelter Cat'] || 0), icon: FiShield },
+    { id: 'shelter', label: 'Shelter Cats', value: formatNumber(categoryCounts['Shelter Cat'] || 0), icon: FiShield },
   ];
 
   return (
