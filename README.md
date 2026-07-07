@@ -1,7 +1,7 @@
 # 🐾 MeowAtlas
 
 <p align="center">
-  <h3 align="center">Every Cat Has a Place on the Map.</h3>
+  <h3 align="center">Every Cat Has a Place on the Map 🐱🗺️</h3>
   <p align="center">
    MeowAtlas is an interactive world map where anyone can discover and add cats from across the globe-whether they are pets, shelter cats, or beloved street cats. Every cat gets a digital profile, a story, photos, and a place on the map, celebrating the idea that every cat matters.
   </p>
@@ -22,8 +22,6 @@ Millions of community cats quietly live among us, yet very little information ab
 **MeowAtlas** transforms scattered cat sightings into a living, community-powered map where every cat receives a unique **Digital Meow Passport**.
 
 Whether it's a friendly neighborhood stray, a rescued shelter cat, or someone's outdoor companion, anyone can instantly add them to the map—without creating an account.
-
-By combining geolocation and real-time updates, MeowAtlas bridges the gap between individual compassion and community-driven feline welfare.
 
 ---
 
@@ -226,5 +224,5 @@ It helps more people discover the project and supports future development.
 ---
 
 <p align="center">
-Made with ❤️ for every curious whisker around the world. 🐾
+Made with ❤️ and meows for every cats 🐱 around the world.
 </p>
