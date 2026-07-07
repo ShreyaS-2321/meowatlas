@@ -36,7 +36,7 @@ const AddCatModal = ({ isOpen, onClose }) => {
   const [galleryPreviews, setGalleryPreviews] = useState([]);
   
   const [formData, setFormData] = useState({
-    name: '', category: 'Community Cat', country: '', city: '', 
+    name: '', category: '', country: '', city: '', 
     age: '', breed: '', story: '',
   });
 
@@ -50,7 +50,6 @@ const AddCatModal = ({ isOpen, onClose }) => {
           .then(res => res.json())
           .then(data => {
             if (data.features) {
-              // Map Photon's output to match your existing UI format
               const mappedResults = data.features.map((f, index) => ({
                 id: index,
                 name: f.properties.name || f.properties.street || f.properties.city || 'Unknown Place',
@@ -97,7 +96,7 @@ const AddCatModal = ({ isOpen, onClose }) => {
   };
 
   const handleClearAll = () => {
-    setFormData({ name: '', category: 'Community Cat', country: '', city: '', age: '', breed: '', story: ''});
+    setFormData({ name: '', category: '', country: '', city: '', age: '', breed: '', story: ''});
     setTags([]); setTagInput(''); setProfileFile(null); setProfilePreview(null); setGalleryFiles([]); setGalleryPreviews([]);
     if (profileInputRef.current) profileInputRef.current.value = '';
     if (galleryInputRef.current) galleryInputRef.current.value = '';
@@ -188,7 +187,7 @@ const AddCatModal = ({ isOpen, onClose }) => {
                 <div className={styles.formGroup}>
                   <label>Category</label>
                   <select name="category" value={formData.category} onChange={handleChange}>
-                    <option>Pet Cat</option><option>Community Cat</option><option>Street Cat</option><option>Shelter Cat</option>
+                    <option>Pet Cat</option><option>Street Cat</option><option>Shelter Cat</option>
                   </select>
                 </div>
               </div>
