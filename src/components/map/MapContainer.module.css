@@ -1,0 +1,65 @@
+.mapWrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.mapWrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(255, 250, 240, 0.32), transparent 22%),
+    linear-gradient(0deg, rgba(254, 228, 184, 0.34), transparent 28%);
+}
+
+:global(.maplibregl-ctrl-group) {
+  border-radius: var(--radius-sm) !important;
+  box-shadow: var(--shadow-float) !important;
+  border: 1px solid var(--glass-border) !important;
+  overflow: hidden;
+  margin-bottom: 120px !important;
+  margin-right: 24px !important;
+  background: var(--glass-strong) !important;
+}
+
+.catMarker {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: 50%;
+  background-color: var(--accent-cream);
+  border: 2px solid #ffffff;
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--color-black),
+    0 6px 14px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.catMarker img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.catMarker:hover {
+  transform: scale(1.16) translateY(-3px);
+  box-shadow:
+    0 0 0 2px var(--color-black),
+    0 10px 22px rgba(0, 0, 0, 0.26);
+  z-index: 10;
+}
+
+.catMarker:focus-visible {
+  box-shadow:
+    0 0 0 2px var(--color-black),
+    0 0 0 5px var(--color-sky),
+    0 10px 22px rgba(0, 0, 0, 0.26);
+}

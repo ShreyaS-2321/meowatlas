@@ -1,0 +1,432 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(23, 23, 23, 0.42);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal {
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  background: var(--glass-strong);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-float);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px;
+  background: linear-gradient(135deg, rgba(163, 223, 241, 0.28), rgba(254, 228, 184, 0.5));
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.modalHeader h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  letter-spacing: 0;
+  color: var(--text-main);
+}
+
+.modalHeader h2::after {
+  content: " passport entry";
+  margin-left: 6px;
+  color: var(--accent-blue-deep);
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.closeBtn {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-main);
+  transition: background 0.2s;
+}
+
+.closeBtn:hover:not(:disabled) {
+  background: var(--color-black);
+  color: white;
+}
+
+
+.formContent {
+  padding: 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  scrollbar-width: none; /* Firefox */
+}
+
+.formContent::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.formGroup label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.formGroup input, 
+.formGroup select, 
+.formGroup textarea {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(255, 250, 240, 0.72);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  color: var(--text-main);
+  outline: none;
+  transition: all 0.2s;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.formGroup input:focus, 
+.formGroup select:focus, 
+.formGroup textarea:focus {
+  background: white;
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 4px rgba(163, 223, 241, 0.32);
+}
+
+.sectionDivider {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-top: 12px;
+  padding-bottom: 8px;
+  color: var(--text-main);
+  border-bottom: 1px solid rgba(255, 164, 58, 0.3);
+}
+
+
+.tagsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px;
+  background: rgba(254, 228, 184, 0.3);
+  border: 1px solid rgba(255, 164, 58, 0.18);
+  border-radius: var(--radius-sm);
+  min-height: 44px;
+}
+
+.chip {
+  background: white;
+  border: 1px solid rgba(0,0,0,0.1);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.chip button {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.tagInput {
+  flex: 1;
+  min-width: 150px;
+  border: none !important;
+  background: transparent !important;
+  padding: 4px 8px !important;
+  box-shadow: none !important;
+}
+
+.suggestedTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.suggestedChip {
+  font-size: 0.75rem;
+  color: var(--accent-blue-deep);
+  background: rgba(163, 223, 241, 0.22);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+
+.suggestedChip:hover {
+  background: var(--color-black);
+  color: white;
+}
+
+
+.photoUploadsRow {
+  display: flex;
+  gap: 16px;
+}
+
+.uploadBlock {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.uploadBlock label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.uploadArea {
+  width: 100%;
+  height: 120px;
+  border: 2px dashed rgba(255, 164, 58, 0.44);
+  border-radius: var(--radius-md);
+  background: rgba(254, 228, 184, 0.22);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  overflow: hidden;
+  position: relative;
+}
+
+.uploadArea:hover {
+  background: rgba(163, 223, 241, 0.18);
+  border-color: var(--accent-pink);
+}
+
+.hasImage {
+  border: none;
+  background: transparent;
+}
+
+.uploadPlaceholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.uploadPlaceholder svg {
+  font-size: 1.5rem;
+  color: var(--accent-blue-deep);
+}
+
+.imagePreview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+}
+
+.galleryPreviewGrid {
+  display: flex;
+  gap: 6px;
+  width: 100%;
+  height: 100%;
+}
+
+.tinyPreview {
+  flex: 1;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  min-width: 0; /* Prevents flex items from overflowing */
+}
+
+
+.modalFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 12px;
+  padding-top: 24px;
+  border-top: 1px solid var(--glass-border);
+}
+
+.cancelBtn {
+  padding: 12px 24px;
+  background: transparent;
+  border: none;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-radius: var(--radius-full);
+}
+
+.cancelBtn:hover:not(:disabled) {
+  background: rgba(163, 223, 241, 0.16);
+  color: var(--text-main);
+}
+
+.submitBtn {
+  padding: 12px 24px;
+  background: var(--color-black);
+  color: white;
+  border: none;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 180px;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+  transition: background 0.2s;
+}
+
+.submitBtn:hover:not(:disabled) {
+  background: var(--accent-pink-hover);
+  color: var(--color-black);
+}
+
+.submitBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Loading Spinner */
+.spinner {
+  animation: spin 1s linear infinite;
+  font-size: 1.2rem;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+
+@media (max-width: 600px) {
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .photoUploadsRow {
+    flex-direction: column;
+  }
+  
+  .modal {
+    max-height: 95vh;
+  }
+}
+
+
+.autocompleteWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.dropdownList {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  width: 100%;
+  max-height: 200px;
+  background: var(--glass-strong);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-float);
+  overflow-y: auto;
+  margin: 0;
+  padding: 8px 0;
+  list-style: none;
+  z-index: 50;
+  
+  /* Custom sleek scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,0,0,0.2) transparent;
+}
+
+.dropdownList::-webkit-scrollbar {
+  width: 6px;
+}
+.dropdownList::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.15);
+  border-radius: 4px;
+}
+
+.dropdownList li {
+  padding: 10px 16px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  color: var(--text-main);
+  transition: background 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dropdownList li:hover {
+  background: rgba(163, 223, 241, 0.18);
+  color: var(--accent-blue-deep);
+}
+
+/* Specific styling for City suggestions */
+.cityIcon {
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.cityName {
+  display: block;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.cityAdmin {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}

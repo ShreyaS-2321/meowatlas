@@ -1,0 +1,25 @@
+.cursorLayer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100000;
+}
+
+.paw {
+  position: fixed;
+  color: rgba(0, 0, 0, 0.34);
+  font-size: 14px;
+  filter: drop-shadow(0 1px 1px rgba(255, 255, 255, 0.4));
+  animation: fadeOut 1.1s ease forwards;
+  transform-origin: center;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 0.9;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
