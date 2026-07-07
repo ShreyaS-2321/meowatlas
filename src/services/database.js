@@ -30,3 +30,17 @@ export const getAllCats = async () => {
     throw error;
   }
 };
+
+export const updateCatStats = async (documentId, data) => {
+  try {
+    return await databases.updateDocument(
+      DATABASE_ID, 
+      COLLECTION_ID, 
+      documentId, 
+      data 
+    );
+  } catch (error) {
+    console.error("Error updating stats:", error);
+    throw error;
+  }
+};
