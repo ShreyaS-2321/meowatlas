@@ -42,13 +42,20 @@
 }
 
 .modalHeader h2::after {
-  content: " passport entry";
-  margin-left: 6px;
-  color: var(--accent-blue-deep);
-  font-family: var(--font-italic);
-  font-style: italic;
-  font-size: 1rem;
-  font-weight: 400;
+  content: ""; /* Text ko khali kar diya */
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 8px;
+  
+  /* Yahan apni image ka absolute ya relative path dijiye */
+  background-image: url('cat.svg'); 
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  
+  /* Dimensions control */
+  width: 40px;  
+  height: 40px;
 }
 
 .closeBtn {
@@ -68,6 +75,27 @@
 .closeBtn:hover:not(:disabled) {
   background: var(--color-black);
   color: white;
+}
+
+.duplicateNotice {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm, 8px);
+}
+
+.noticeIcon {
+  color: #ffaa00; /* Subtle warning orange */
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.duplicateNotice span {
+  font-size: 0.85rem;
+  color: #555555;
+  line-height: 1.4;
 }
 
 
