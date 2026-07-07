@@ -248,7 +248,10 @@ const AddCatModal = ({ isOpen, onClose }) => {
         <motion.div key="modal-overlay" className={styles.overlay} onClick={onClose} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
           <motion.div className={styles.modal} variants={modalVariants} initial="hidden" animate="visible" exit="exit" onClick={(e) => e.stopPropagation()}>
             <div className={styles.modalHeader}>
+              <div className={styles.title}>
               <h2>Add a New Cat</h2>
+              <img src="/cat.svg" alt="" className={styles.catIcon} />
+              </div>
               <button type="button" className={styles.closeBtn} onClick={onClose}><FiX /></button>
             </div>
 
