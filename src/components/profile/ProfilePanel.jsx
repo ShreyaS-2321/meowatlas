@@ -20,14 +20,13 @@ const ProfilePanel = ({ cat, onClose }) => {
 
   const catId = cat?.$id || 'unknown';
 
-
   const lovedStateKey = `cat_${catId}_has_loved`;
   const fishedStateKey = `cat_${catId}_has_fished`;
 
   const [hasLoved, setHasLoved] = useState(() => localStorage.getItem(lovedStateKey) === 'true');
   const [hasFished, setHasFished] = useState(() => localStorage.getItem(fishedStateKey) === 'true');
   
-  // 🔴 Global Database counts se variables initialize honge
+  // 🔴 Global DB counts se initialize ho raha hai
   const [loves, setLoves] = useState(cat?.loves || 0);
   const [fishes, setFishes] = useState(cat?.fishes || 0);
 
@@ -45,15 +44,16 @@ const ProfilePanel = ({ cat, onClose }) => {
     setHasLoved(newState);
     localStorage.setItem(lovedStateKey, String(newState));
     
+    
     const newCount = Math.max(0, newState ? loves + 1 : loves - 1);
     setLoves(newCount);
-
+    
     try {
       if (catId !== 'unknown') {
         await updateCatStats(catId, { loves: newCount });
       }
     } catch (error) {
-      console.error("Failed to update loves", error);
+      console.error("Failed to sync loves to Appwrite", error);
     }
   };
 
@@ -61,7 +61,7 @@ const ProfilePanel = ({ cat, onClose }) => {
     const newState = !hasFished;
     setHasFished(newState);
     localStorage.setItem(fishedStateKey, String(newState));
-    
+
     const newCount = Math.max(0, newState ? fishes + 1 : fishes - 1);
     setFishes(newCount);
 
@@ -70,7 +70,7 @@ const ProfilePanel = ({ cat, onClose }) => {
         await updateCatStats(catId, { fishes: newCount });
       }
     } catch (error) {
-      console.error("Failed to update fishes", error);
+      console.error("Failed to sync fishes to Appwrite", error);
     }
   };
 
@@ -127,7 +127,6 @@ const ProfilePanel = ({ cat, onClose }) => {
                     alt={cat.name || 'Cat'}
                     className={styles.passportPhoto}
                     onError={(event) => {
-                      console.error('Image failed to load. URL:', profileImg);
                       event.target.src = fallbackImg;
                     }}
                   />
