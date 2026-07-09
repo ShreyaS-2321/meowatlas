@@ -500,3 +500,53 @@
     align-items: flex-start;
   }
 }
+
+.actionButton {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.adoptBtn {
+  margin-top: 12px;
+  background-color: var(--color-orange);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 10px rgba(39, 174, 96, 0.2);
+}
+
+.adoptBtn:hover {
+  background-color: var(--color-orange);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(254, 228, 184, 0.76);;
+}
+
+.adoptBtn:active {
+  transform: translateY(0);
+}
+
+.deleteBtn {
+  margin-top: 24px;
+  background-color: transparent;
+  color: #e74c3c;
+  border: 1.5px solid #e74c3c;
+}
+
+.deleteBtn:hover {
+  background-color: #fdf2f2;
+  color: #c0392b;
+  border-color: #c0392b;
+}
+
+.deleteBtn:active {
+  background-color: #fce8e8;
+}
