@@ -111,8 +111,8 @@ const AddCatModal = ({ isOpen, onClose }) => {
   const [galleryPreviews, setGalleryPreviews] = useState([]);
   
   const [formData, setFormData] = useState({
-    name: '', category: '', country: '', city: '', 
-    age: '', breed: '', story: '',
+    name: '', category: 'Pet Cat', country: '', city: '', 
+    age: '', breed: '', story: '', shelterName: '', adoptionAvailability: 'Available for Adoption', contact: ''
   });
 
   const [tags, setTags] = useState([]);
@@ -171,13 +171,12 @@ const AddCatModal = ({ isOpen, onClose }) => {
   };
 
   const handleClearAll = () => {
-    setFormData({ name: '', category: '', country: '', city: '', age: '', breed: '', story: ''});
+    setFormData({ name: '', category: 'Pet Cat', country: '', city: '', age: '', breed: '', story: '', shelterName: '', adoptionAvailability: 'Available for Adoption', contact: ''});
     setTags([]); setTagInput(''); setProfileFile(null); setProfilePreview(null); setGalleryFiles([]); setGalleryPreviews([]);
     if (profileInputRef.current) profileInputRef.current.value = '';
     if (galleryInputRef.current) galleryInputRef.current.value = '';
   };
 
- 
   const getCoordinates = async (city, country) => {
     try {
       const searchQuery = `${city.trim()}, ${country.trim()}`;
@@ -203,6 +202,19 @@ const AddCatModal = ({ isOpen, onClose }) => {
       alert("Please fill required fields: Country, Exact Locality/City, and Profile Image.");
       return;
     }
+
+    if (formData.category === 'Shelter Cat' && formData.contact) {
+      const contactVal = formData.contact.trim();
+      
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const phoneRegex = /^[\d\s\-\+\(\)]+$/;
+
+      if (!emailRegex.test(contactVal) && !phoneRegex.test(contactVal)) {
+        alert("Please enter a valid Email or Phone number for the shelter contact.");
+        return;
+      }
+    }
+
     setLoading(true);
 
     try {
@@ -224,7 +236,10 @@ const AddCatModal = ({ isOpen, onClose }) => {
         story: formData.story,
         tags: tags.join(', '), 
         profileImageId: profileId,
-        galleryImageIds: galleryIds 
+        galleryImageIds: galleryIds,
+        shelterName: formData.category === 'Shelter Cat' ? formData.shelterName : '',
+        adoptionAvailability: formData.category === 'Shelter Cat' ? formData.adoptionAvailability : '',
+        contact: formData.category === 'Shelter Cat' ? formData.contact : ''
       };
 
       await addCatToDatabase(newCat);
@@ -270,11 +285,39 @@ const AddCatModal = ({ isOpen, onClose }) => {
                 <div className={styles.formGroup}>
                   <label>Category</label>
                   <select name="category" value={formData.category} onChange={handleChange}>
-                    <option>Pet Cat</option><option>Street Cat</option><option>Shelter Cat</option>
+                    <option value="Pet Cat">Pet Cat</option>
+                    <option value="Street Cat">Street Cat</option>
+                    <option value="Shelter Cat">Shelter Cat</option>
                   </select>
                 </div>
               </div>
 
+              {formData.category === 'Shelter Cat' && (
+                <>
+                  <div className={styles.sectionDivider}>Shelter Information</div>
+                  <div className={styles.formGrid}>
+                    <div className={styles.formGroup}>
+                      <label>Shelter Name</label>
+                      <input type="text" name="shelterName" value={formData.shelterName} onChange={handleChange} />
+                    </div>
+                    <div className={styles.formGroup}>
+                      <label>Adoption Status</label>
+                      <select name="adoptionAvailability" value={formData.adoptionAvailability} onChange={handleChange}>
+                        <option value="Available for Adoption">Available for Adoption</option>
+                        <option value="Adoption Pending">Adoption Pending</option>
+                        <option value="Already Adopted">Already Adopted</option>
+                        <option value="Not Available">Not Available</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div className={styles.formGroup}>
+                    <label>Contact Info (Email / Phone)</label>
+                    <input type="text" name="contact" value={formData.contact} onChange={handleChange} />
+                  </div>
+                </>
+              )}
+
+              <div className={styles.sectionDivider}>Location Data</div>
               <div className={styles.formGrid}>
                 <div className={styles.formGroup}>
                   <label>Country *</label>
