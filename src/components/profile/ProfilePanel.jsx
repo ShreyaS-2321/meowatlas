@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import { FiFile, FiHeart, FiMapPin, FiX } from 'react-icons/fi';
+import { FiFile, FiHeart, FiMapPin, FiX, FiHome } from 'react-icons/fi';
 import { FaFish, FaPaw } from 'react-icons/fa';
 import styles from './ProfilePanel.module.css';
 import { getCatImagePreview } from '../../services/storage';
@@ -26,7 +26,6 @@ const ProfilePanel = ({ cat, onClose }) => {
   const [hasLoved, setHasLoved] = useState(() => localStorage.getItem(lovedStateKey) === 'true');
   const [hasFished, setHasFished] = useState(() => localStorage.getItem(fishedStateKey) === 'true');
   
-  // 🔴 Global DB counts se initialize ho raha hai
   const [loves, setLoves] = useState(cat?.loves || 0);
   const [fishes, setFishes] = useState(cat?.fishes || 0);
 
@@ -43,7 +42,6 @@ const ProfilePanel = ({ cat, onClose }) => {
     const newState = !hasLoved;
     setHasLoved(newState);
     localStorage.setItem(lovedStateKey, String(newState));
-    
     
     const newCount = Math.max(0, newState ? loves + 1 : loves - 1);
     setLoves(newCount);
@@ -165,6 +163,17 @@ const ProfilePanel = ({ cat, onClose }) => {
                   <h4 className={styles.sectionTitle}><FiMapPin /> Current Location</h4>
                   <p className={styles.locationText}>{cat.city}, {cat.country}</p>
                 </div>
+
+                {cat.category === 'Shelter Cat' && (cat.shelterName || cat.adoptionAvailability || cat.contact) && (
+                  <div className={styles.storySection}>
+                    <h4 className={styles.sectionTitle}><FiHome /> Shelter Details</h4>
+                    <div className={styles.identityDetails} style={{ border: 'none', padding: '0', margin: '8px 0 0 0' }}>
+                      {cat.shelterName && <div className={styles.idRow}><span>Shelter:</span> <strong>{cat.shelterName}</strong></div>}
+                      {cat.adoptionAvailability && <div className={styles.idRow}><span>Status:</span> <strong>{cat.adoptionAvailability}</strong></div>}
+                      {cat.contact && <div className={styles.idRow}><span>Contact:</span> <strong>{cat.contact}</strong></div>}
+                    </div>
+                  </div>
+                )}
 
                 <div className={styles.storySection}>
                   <h4 className={styles.sectionTitle}><FaPaw /> Characteristics</h4>
