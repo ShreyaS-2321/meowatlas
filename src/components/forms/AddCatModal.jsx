@@ -242,7 +242,11 @@ const AddCatModal = ({ isOpen, onClose }) => {
         contact: formData.category === 'Shelter Cat' ? formData.contact : ''
       };
 
-      await addCatToDatabase(newCat);
+      const createdDoc = await addCatToDatabase(newCat);
+      const myCats = JSON.parse(localStorage.getItem('my_cats') || '[]');
+      myCats.push(createdDoc.$id);
+      localStorage.setItem('my_cats', JSON.stringify(myCats));
+
       alert("Added successfully!");
       handleClearAll(); 
       onClose();
