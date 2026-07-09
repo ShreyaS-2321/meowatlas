@@ -45,3 +45,16 @@ export const updateCatStats = async (documentId, data) => {
     throw error;
   }
 };
+
+export const deleteCatFromDatabase = async (documentId) => {
+  try {
+    return await databases.deleteDocument(
+      DATABASE_ID,
+      COLLECTION_ID,
+      documentId
+    );
+  } catch (error) {
+    console.error("Error deleting cat:", error);
+    throw error;
+  }
+};
